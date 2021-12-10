@@ -4,7 +4,7 @@ const commentCtrl = require("../controllers/comment.Ctrl");
 const auth = require("../middlewares/auth");
 
 // Route récupération de tous les commentaires
-router.get("/:id/comments", auth, commentCtrl.getAllComments);
+router.get("/:id/comments", commentCtrl.getAllComments);
 
 // Route récupération d'un commentaire
 router.get("/:id", auth, commentCtrl.getOneComment);

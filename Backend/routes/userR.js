@@ -2,10 +2,15 @@ const express = require("express");
 const router = express.Router();
 const userCtrl = require("../controllers/user.Ctrl");
 const auth = require("../middlewares/auth");
-
+const multerImage = require("../middlewares/multer-config");
 // Route récupération utilisateur
-router.get("/:id", auth, userCtrl.getOneUser);
+router.get("/:id", userCtrl.getOneUser);
 
 // Route récupération photo de profil
-// router.get("/image/:id", auth, userCtrl.getProfilPicture); METTRE EN PLACE MULTER ET DOSSIER IMAGE
+router.get("/image/:id", userCtrl.getProfilPicture);
+
+
+// Route modification d'un utilisateur
+router.put("/:id", multerImage.single("profil_image"), userCtrl.updateOneUser);
+
 module.exports = router;

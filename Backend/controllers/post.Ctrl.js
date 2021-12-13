@@ -83,9 +83,10 @@ exports.getImage = (req, res, next) => {
 
 // Modification d'un post
 exports.updatePost = (req, res, next) => {
-  let sql = "SELECT * FROM posts ORDER BY date_creation DESC;";
-  let db = dbc.getDB();
-  db.query(sql, (err, result) => {
+  const message = req.body;
+  const { id: post_id } = req.params;
+  const sqlUpdatePost = `UPDATE posts SET message = "${message}" WHERE id = ${post_id} `;
+  db.query(sqlUpdatePost, (err, result) => {
     if (err) {
       res.status(404).json({ err });
       throw err;

@@ -97,7 +97,7 @@ exports.updatePost = (req, res, next) => {
 // Suppression d'un post
 exports.deleteOnePost = (req, res, next) => {
   const { id: post_id } = req.params;
-  const sql = `DELETE FROM posts p WHERE p.id = ${post_id}`;
+  const sql = `DELETE FROM posts WHERE id = ${post_id}`;
   db.query(sql, (err, result) => {
     if (err) {
       res.status(404).json({ err });

@@ -9,8 +9,10 @@ router.get("/:id", userCtrl.getOneUser);
 // Route récupération photo de profil
 router.get("/image/:id", userCtrl.getProfilPicture);
 
-
 // Route modification d'un utilisateur
 router.put("/:id", multerImage.single("profil_image"), userCtrl.updateOneUser);
+
+// Route suppression d'un utlisateur
+router.delete("/:id", userCtrl.deleteOneUser);
 
 module.exports = router;

@@ -36,7 +36,7 @@ exports.createPost = (req, res, next) => {
 //   Récupérer tous les posts
 exports.getAllPosts = (req, res, next) => {
   const sql =
-    "SELECT * FROM posts p, users u WHERE p.user_id = u.user_id ORDER BY date_post DESC";
+    "SELECT * FROM posts p, users u WHERE p.user_id = u.user_id ORDER BY id DESC";
   db.query(sql, (err, result) => {
     if (err) {
       res.status(404).json({ err });

@@ -11,7 +11,7 @@ router.get("/", auth, postCtrl.getAllPosts);
 router.get("/:id", auth, postCtrl.getOnePost);
 
 // Route post d'un post
-router.post("/", auth, multerImage.single("post_image"), postCtrl.createPost);
+router.post("/", auth, multerImage, postCtrl.createPost);
 
 // Route suppression d'un post
 router.delete("/:id", auth, postCtrl.deleteOnePost);

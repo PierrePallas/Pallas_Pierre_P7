@@ -1,4 +1,5 @@
 const multer = require("multer");
+const path = require("path");
 
 const MIME_TYPES = {
   "image/jpg": "jpg",
@@ -8,7 +9,7 @@ const MIME_TYPES = {
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, "images");
+    callback(null, "./images");
   },
   filename: (req, file, callback) => {
     const name = file.originalname.split(" ").join("_");
@@ -17,4 +18,13 @@ const storage = multer.diskStorage({
   },
 });
 
-module.exports = multer({ storage: storage });
+module.exports = multer({
+  storage: storage,
+  fileFilter: function (req, file, callback) {
+    var ext = path.extname(file.originalname);
+    if (ext !== ".png" && ext !== ".jpg" && ext !== ".jpeg") {
+      return callback(new Error("Le format du fichier est invalide"));
+    }
+    callback(null, true);
+  },
+}).single("image_url");

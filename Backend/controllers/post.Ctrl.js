@@ -4,10 +4,9 @@ const db = dbConfig.getDb();
 // Création de post
 exports.createPost = (req, res, next) => {
   let { body, file } = req;
-  if (!file) delete req.body.post_image;
+  if (!file) delete req.body.image_url;
   body = {
     ...body,
-    likes: "",
   };
 
   const sqlInsert = "INSERT INTO posts SET ?";
@@ -74,7 +73,7 @@ exports.getImage = (req, res, next) => {
         req.protocol +
         "://" +
         req.get("host") +
-        "/images/posts/" +
+        "/images/" +
         result[0].image_url;
     }
     res.status(200).json(result);

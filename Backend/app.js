@@ -2,6 +2,7 @@ const express = require("express");
 const auth = require("./middlewares/auth");
 const app = express();
 const cookieParser = require("cookie-parser");
+const path = require("path");
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -19,6 +20,7 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 app.use(cookieParser());
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 // Routes
 const authRoutes = require("./routes/authR");
